@@ -8,7 +8,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import Logo from "src/components/Logo";
 import useAuth from "src/hooks/useAuth";
 import MenuItem from "@mui/material/MenuItem";
@@ -18,6 +18,7 @@ import { useState } from "react";
 export default function Layout() {
   const { user, logout } = useAuth();
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
 
   const handleMenu = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -72,7 +73,10 @@ export default function Layout() {
               </Box>
               <Divider />
               <MenuItem disabled>Profile</MenuItem>
-              <MenuItem onClick={logout}>Logout</MenuItem>
+              <MenuItem onClick={() => {
+                logout();
+                navigate("/login");
+              }}>Logout</MenuItem>
             </Stack>
           </Menu>
         </Toolbar>

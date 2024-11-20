@@ -25,7 +25,11 @@ class TaskController extends Controller
 
     public function getTasks()
     {
-        return response()->json(Task::all());
+        $userId = auth()->id();
+
+        $tasks = Task::where('user_id', $userId)->get();
+
+        return response()->json($tasks);
     }
 
     public function getTask(Request $request, $id)
@@ -58,7 +62,6 @@ class TaskController extends Controller
         return response()->json($task);
     }
 
-    // Delete a Task
     public function deleteTask($id)
     {
         $task = Task::findOrFail($id);
