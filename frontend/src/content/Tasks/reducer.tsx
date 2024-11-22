@@ -41,7 +41,7 @@ const _reducer = (state: State, action: StateAction) => {
     case "EDIT_TASK":
       return { ...state, editTask: action.payload };
     case "ERROR":
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, loading: false };
 
     case "MODAL_CLOSE":
       return { ...state, newTask: false, editTask: null, shareTask: null };

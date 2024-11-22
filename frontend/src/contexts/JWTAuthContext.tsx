@@ -95,6 +95,9 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
   const initialize = async (): Promise<void> => {
     try {
       const accessToken = window.localStorage.getItem("accessToken");
+      if (!accessToken) {
+        throw new Error("No access token found");
+      }
       const res = await fetch(`${config.apiUrl}/user/`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -136,7 +139,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
       return Promise.reject(data);
     }
     setSession(data.access_token);
-    initialize();
+    await initialize();
   };
 
   const logout = async (): Promise<void> => {
@@ -168,7 +171,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
       return Promise.reject(data);
     }
     setSession(data.access_token);
-    initialize();
+    await initialize();
   };
 
   const resetPassword = async (email: string): Promise<void> => {

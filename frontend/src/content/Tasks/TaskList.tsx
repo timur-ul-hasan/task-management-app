@@ -40,7 +40,7 @@ const TasksList = ({ state, dispatch }: TasksListProps) => {
           }}
         >
           <Typography variant="h1" textAlign="center">
-            No shared tasks found
+            No tasks found
           </Typography>
           <Button variant="contained" onClick={() => navigate(-1)}>
             GO BACK

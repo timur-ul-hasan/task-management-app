@@ -10,9 +10,11 @@ import TasksList from "./TaskList";
 const TasksPage: React.FC = () => {
   const [state, dispatch] = reducer();
 
+  const accessToken = localStorage.getItem("accessToken") || "";
+  
   useEffect(() => {
-    getAllTasks(dispatch);
-  }, []);
+    getAllTasks(dispatch, accessToken);
+  }, [accessToken]);
 
   return (
     <Box>

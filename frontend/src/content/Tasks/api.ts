@@ -2,14 +2,14 @@ import config from "src/config";
 
 const accessToken = localStorage.getItem("accessToken");
 
-export const getAllTasks = async (dispatch: StateDispatch): Promise<void> => {
+export const getAllTasks = async (dispatch: StateDispatch, token: string): Promise<void> => {
   try {
     dispatch({ type: "LOADING" });
     const res = await fetch(`${config.apiUrl}/tasks/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const data = await res.json();
