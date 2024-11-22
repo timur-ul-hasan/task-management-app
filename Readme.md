@@ -35,7 +35,7 @@ docker build -t task-management:latest . \
     --build-arg REACT_APP_API_ENDPOINT=http::/localhost::8888 \
     --build-arg ENVIRONMENT=production
 
-docker run -p 80:80 --name task-management task-management 
+docker run -p 80:80 --name task-management 
 ```
 
 4. Application will be available at `http://localhost`

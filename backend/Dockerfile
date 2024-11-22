@@ -30,7 +30,12 @@ RUN apk add  \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+
 WORKDIR /var/www/html
+
+COPY composer.json composer.lock ./
+
+RUN composer install --no-dev --no-interaction --no-progress --optimize-autoloader --no-scripts
 
 COPY . .
 
